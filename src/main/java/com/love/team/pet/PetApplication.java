@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aliyuncs.exceptions.ClientException;
-import com.aliyuncs.exceptions.ServerException;
 import com.love.team.pet.util.PhoneCode;
+
+import java.rmi.ServerException;
 
 @SpringBootApplication
 @RestController
