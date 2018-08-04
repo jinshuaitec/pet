@@ -22,6 +22,7 @@ public class PetApplication {
 
 	@RequestMapping(value = "/")
 	public String hello() throws ServerException, ClientException{
+		
 		System.out.println(PhoneCode.phoneCode("15937431306"));
 		return "Hello World";
 	}
