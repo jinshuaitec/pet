@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-08-04 11:46:45
+Date: 2018-08-04 17:15:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,7 +32,7 @@ CREATE TABLE `adopt_pet` (
   `content` text COMMENT '领养人说话的内容',
   `contact_way` varchar(20) DEFAULT NULL COMMENT '联系方式',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of adopt_pet
@@ -56,7 +56,7 @@ CREATE TABLE `page_picture` (
   `description` varchar(255) DEFAULT NULL COMMENT '描述图片的位置等等',
   `sequence` int(11) DEFAULT NULL COMMENT '首页的图片排序字典',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of page_picture
@@ -79,7 +79,7 @@ CREATE TABLE `release_information` (
   `content` text COMMENT '文本,输入的具体内容',
   `heat` int(11) DEFAULT NULL COMMENT '热度,后面可以根据heat排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of release_information
@@ -101,7 +101,7 @@ CREATE TABLE `upload_image` (
   `is_deleted` bit(1) DEFAULT NULL,
   `info_id` varchar(36) NOT NULL COMMENT '发布信息的id,这里保存上传照片的名字和url',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of upload_image
@@ -136,7 +136,7 @@ CREATE TABLE `user` (
   `city` varchar(15) DEFAULT NULL,
   `area` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
