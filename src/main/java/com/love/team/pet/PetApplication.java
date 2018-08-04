@@ -5,6 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.aliyuncs.exceptions.ClientException;
+import com.aliyuncs.exceptions.ServerException;
+import com.love.team.pet.util.PhoneCode;
+
 @SpringBootApplication
 @RestController
 public class PetApplication {
@@ -14,7 +18,8 @@ public class PetApplication {
 	}
 
 	@RequestMapping(value = "/")
-	public String hello(){
+	public String hello() throws ServerException, ClientException{
+		System.out.println(PhoneCode.phoneCode("15937431306"));
 		return "Hello World";
 	}
 }
