@@ -7,8 +7,6 @@ public class User extends BaseEntity {
 
     private String roleId;
 
-    private Boolean isDeleted;
-
     private String qq;
 
     private String weChat;
@@ -57,14 +55,6 @@ public class User extends BaseEntity {
 
     public void setRoleId(String roleId) {
         this.roleId = roleId;
-    }
-
-    public Boolean getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
     }
 
     public String getQq() {

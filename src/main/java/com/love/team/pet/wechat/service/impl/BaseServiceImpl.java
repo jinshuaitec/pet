@@ -2,6 +2,7 @@ package com.love.team.pet.wechat.service.impl;
 
 import com.love.team.pet.base.Base;
 import com.love.team.pet.model.BaseEntity;
+import com.love.team.pet.util.StringUtil;
 
 import java.util.Date;
 import java.util.UUID;
@@ -20,9 +21,15 @@ public abstract class BaseServiceImpl<T extends BaseEntity> extends Base {
      * @param baseEntity 待保存对象
      */
     protected void saveBasicInfo(BaseEntity baseEntity) {
-        baseEntity.setId(UUID.randomUUID().toString());
-        baseEntity.setCreateBy("");
-        baseEntity.setCreateDate(new Date());
-        baseEntity.setDeleted(false);
+        if (StringUtil.isEmpty(baseEntity.getId())){
+            baseEntity.setId(UUID.randomUUID().toString());
+            baseEntity.setCreateBy("jins");
+            baseEntity.setCreateDate(new Date());
+            baseEntity.setDeleted(false);
+        }else {
+            baseEntity.setUpdateBy("jins");
+            baseEntity.setUpdateDate(new Date());
+        }
+
     }
 }
