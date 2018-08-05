@@ -122,6 +122,12 @@
 			<scope>system</scope>
 			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/aliyun-java-sdk-core-3.3.1.jar</systemPath>
 		</dependency>
+		<!--七牛云上传图片-->
+		<dependency>
+			<groupId>com.qiniu</groupId>
+			<artifactId>qiniu-java-sdk</artifactId>
+			<version>7.2.14</version>
+		</dependency>
 	</dependencies>
 
 	<build>

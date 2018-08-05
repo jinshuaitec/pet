@@ -2,7 +2,7 @@ package com.love.team.pet.wechat.service;
 
 /**
  * @author jins
- * @date on 2018/8/4.
+ * @date on 2018/8/5.
  */
-public class hello {
+public interface PagePictureService {
 }

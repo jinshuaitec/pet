@@ -56,65 +56,36 @@
         </javaClientGenerator>
 
         <!-- 列出要生成代码的所有表，这里配置的是不生成Example文件 -->
-      <!--  <table tableName="account"
+        <!--在这里把数据库对应的表名添加进来,不用的表全部注释掉-->
+       <!-- <table tableName="adopt_pet"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="rootClass" value="com.jinstec.entity.BaseEntity"/>
+            <property name="rootClass" value="com.love.team.pet.model.BaseEntity"/>
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="menu"
+        <table tableName="page_picture"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="rootClass" value="com.jinstec.entity.BaseEntity"/>
+            <property name="rootClass" value="com.love.team.pet.model.BaseEntity"/>
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="role"
+        <table tableName="upload_image"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="rootClass" value="com.jinstec.entity.BaseEntity"/>
+            <property name="rootClass" value="com.love.team.pet.model.BaseEntity"/>
             <property name="useActualColumnNames" value="false"/>
         </table>
         <table tableName="user"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="rootClass" value="com.jinstec.entity.BaseEntity"/>
+            <property name="rootClass" value="com.love.team.pet.model.BaseEntity"/>
             <property name="useActualColumnNames" value="false"/>
         </table>
-        <table tableName="menu_role"
-               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="rootClass" value="com.jinstec.entity.BaseEntity"/>
-            <property name="useActualColumnNames" value="false"/>
-        </table>-->
-    <!--    <table tableName="data_list"
-               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="rootClass" value="com.jinstec.entity.BaseEntity"/>
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="data_type"
-               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="rootClass" value="com.jinstec.entity.BaseEntity"/>
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="learning_link"
-               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="rootClass" value="com.jinstec.entity.BaseEntity"/>
-            <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="statistical_data"
-               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="rootClass" value="com.jinstec.entity.BaseEntity"/>
-            <property name="useActualColumnNames" value="false"/>
-        </table>-->
-      <!--  <table tableName="data_list"
-               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false">
-            <property name="rootClass" value="com.jinstec.entity.BaseEntity"/>
-            <property name="useActualColumnNames" value="false"/>
-        </table>-->
+        <table tableName="release_information"
+                        enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+                        enableSelectByExample="false" selectByExampleQueryId="false">
+        <property name="rootClass" value="com.love.team.pet.model.BaseEntity"/>
+        <property name="useActualColumnNames" value="false"/>
+    </table>-->
     </context>
 </generatorConfiguration>

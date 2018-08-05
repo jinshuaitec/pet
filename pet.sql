@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-08-04 17:15:03
+Date: 2018-08-05 12:57:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,6 +31,7 @@ CREATE TABLE `adopt_pet` (
   `adopter_id` varchar(36) NOT NULL COMMENT '领养人id',
   `content` text COMMENT '领养人说话的内容',
   `contact_way` varchar(20) DEFAULT NULL COMMENT '联系方式',
+  `read_amount` int(20) DEFAULT NULL COMMENT '阅读量',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -73,11 +74,12 @@ CREATE TABLE `release_information` (
   `update_by` varchar(255) DEFAULT NULL,
   `update_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `is_deleted` bit(1) DEFAULT NULL,
-  `version` tinyint(4) DEFAULT NULL,
+  `version` int(4) DEFAULT NULL,
   `total_point` int(11) DEFAULT NULL COMMENT '点赞个数',
   `title` varchar(255) DEFAULT NULL COMMENT '标题',
   `content` text COMMENT '文本,输入的具体内容',
   `heat` int(11) DEFAULT NULL COMMENT '热度,后面可以根据heat排序',
+  `read_amount` int(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -93,7 +95,7 @@ CREATE TABLE `upload_image` (
   `id` varchar(36) NOT NULL,
   `create_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `create_by` varchar(36) DEFAULT NULL,
-  `update_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `update_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `update_by` varchar(36) DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   `url` varchar(255) NOT NULL,
@@ -121,16 +123,16 @@ CREATE TABLE `user` (
   `id_card_front_image` varchar(255) DEFAULT NULL COMMENT '身份证图片正面URL',
   `role_id` varchar(36) DEFAULT NULL,
   `is_deleted` bit(1) DEFAULT NULL,
-  `version` tinyint(4) DEFAULT NULL COMMENT '这是user表,里面包含基本的信息',
+  `version` int(4) DEFAULT NULL COMMENT '这是user表,里面包含基本的信息',
   `qq` varchar(15) DEFAULT NULL,
-  `wechat` varchar(15) DEFAULT NULL,
+  `we_chat` varchar(15) DEFAULT NULL,
   `phone_number` varchar(11) DEFAULT NULL,
   `id_card` varchar(18) NOT NULL COMMENT '身份证号',
   `id_card_back_image` varchar(255) DEFAULT NULL COMMENT '身份证图片反面URL',
   `user_name` varchar(100) DEFAULT NULL,
   `user_image` varchar(255) DEFAULT NULL COMMENT '用户头像',
   `email` varchar(15) DEFAULT NULL COMMENT '邮箱',
-  `sex` bit(1) DEFAULT NULL COMMENT '性别',
+  `sex` bit(1) DEFAULT NULL COMMENT '性别  0 是男,1是女',
   `address` varchar(255) DEFAULT NULL,
   `province` varchar(15) DEFAULT NULL,
   `city` varchar(15) DEFAULT NULL,

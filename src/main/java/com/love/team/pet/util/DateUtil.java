@@ -9,7 +9,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class DateUtils {
+public class DateUtil {
 
     /** 默认日期格式 */
     public static final String DATE_FORMAT_DEFAULT = "yyyy-MM-dd";
