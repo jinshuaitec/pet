@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  * 上传文件控制器
  */
 @Api(value = "FileUploadController", description = "文件上传")
-@RequestMapping("/admin/file-upload")
+@RequestMapping("/file-upload")
 @RestController
 public class FileUploadController {
 

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-08-05 12:57:44
+Date: 2018-08-05 20:54:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -80,6 +80,9 @@ CREATE TABLE `release_information` (
   `content` text COMMENT '文本,输入的具体内容',
   `heat` int(11) DEFAULT NULL COMMENT '热度,后面可以根据heat排序',
   `read_amount` int(20) DEFAULT NULL,
+  `auditor` varchar(36) DEFAULT NULL COMMENT '是由那个管理员审核的',
+  `status` int(11) DEFAULT NULL COMMENT '信息刚发布时是没有审核的0,信息发布之后会审核通过为1,不通过为-1,',
+  `audit_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '管理员审核的时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

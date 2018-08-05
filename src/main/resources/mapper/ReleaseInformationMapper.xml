@@ -13,6 +13,470 @@
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="heat" jdbcType="INTEGER" property="heat" />
     <result column="read_amount" jdbcType="INTEGER" property="readAmount" />
+    <result column="auditor" jdbcType="VARCHAR" property="auditor" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="audit_date" jdbcType="TIMESTAMP" property="auditDate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.love.team.pet.model.ReleaseInformation">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_date, create_by, update_by, update_date, is_deleted, version, total_point, 
+    title, heat, read_amount, auditor, status, audit_date
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from release_information
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from release_information
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.love.team.pet.model.ReleaseInformation">
+    insert into release_information (id, create_date, create_by, 
+      update_by, update_date, is_deleted, 
+      version, total_point, title, 
+      heat, read_amount, auditor, 
+      status, audit_date, content
+      )
+    values (#{id,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}, 
+      #{version,jdbcType=INTEGER}, #{totalPoint,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{heat,jdbcType=INTEGER}, #{readAmount,jdbcType=INTEGER}, #{auditor,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{auditDate,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.love.team.pet.model.ReleaseInformation">
+    insert into release_information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="totalPoint != null">
+        total_point,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="heat != null">
+        heat,
+      </if>
+      <if test="readAmount != null">
+        read_amount,
+      </if>
+      <if test="auditor != null">
+        auditor,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="auditDate != null">
+        audit_date,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="totalPoint != null">
+        #{totalPoint,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="heat != null">
+        #{heat,jdbcType=INTEGER},
+      </if>
+      <if test="readAmount != null">
+        #{readAmount,jdbcType=INTEGER},
+      </if>
+      <if test="auditor != null">
+        #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="auditDate != null">
+        #{auditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.love.team.pet.model.ReleaseInformation">
+    update release_information
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="totalPoint != null">
+        total_point = #{totalPoint,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="heat != null">
+        heat = #{heat,jdbcType=INTEGER},
+      </if>
+      <if test="readAmount != null">
+        read_amount = #{readAmount,jdbcType=INTEGER},
+      </if>
+      <if test="auditor != null">
+        auditor = #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="auditDate != null">
+        audit_date = #{auditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.love.team.pet.model.ReleaseInformation">
+    update release_information
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      version = #{version,jdbcType=INTEGER},
+      total_point = #{totalPoint,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      heat = #{heat,jdbcType=INTEGER},
+      read_amount = #{readAmount,jdbcType=INTEGER},
+      auditor = #{auditor,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      audit_date = #{auditDate,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.love.team.pet.model.ReleaseInformation">
+    update release_information
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      version = #{version,jdbcType=INTEGER},
+      total_point = #{totalPoint,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      heat = #{heat,jdbcType=INTEGER},
+      read_amount = #{readAmount,jdbcType=INTEGER},
+      auditor = #{auditor,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      audit_date = #{auditDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.love.team.pet.model.ReleaseInformation">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="total_point" jdbcType="INTEGER" property="totalPoint" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="heat" jdbcType="INTEGER" property="heat" />
+    <result column="read_amount" jdbcType="INTEGER" property="readAmount" />
+    <result column="auditor" jdbcType="VARCHAR" property="auditor" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="audit_date" jdbcType="TIMESTAMP" property="auditDate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.love.team.pet.model.ReleaseInformation">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_date, create_by, update_by, update_date, is_deleted, version, total_point, 
+    title, heat, read_amount, auditor, status, audit_date
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from release_information
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from release_information
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.love.team.pet.model.ReleaseInformation">
+    insert into release_information (id, create_date, create_by, 
+      update_by, update_date, is_deleted, 
+      version, total_point, title, 
+      heat, read_amount, auditor, 
+      status, audit_date, content
+      )
+    values (#{id,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}, 
+      #{version,jdbcType=INTEGER}, #{totalPoint,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{heat,jdbcType=INTEGER}, #{readAmount,jdbcType=INTEGER}, #{auditor,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{auditDate,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.love.team.pet.model.ReleaseInformation">
+    insert into release_information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="totalPoint != null">
+        total_point,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="heat != null">
+        heat,
+      </if>
+      <if test="readAmount != null">
+        read_amount,
+      </if>
+      <if test="auditor != null">
+        auditor,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="auditDate != null">
+        audit_date,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="totalPoint != null">
+        #{totalPoint,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="heat != null">
+        #{heat,jdbcType=INTEGER},
+      </if>
+      <if test="readAmount != null">
+        #{readAmount,jdbcType=INTEGER},
+      </if>
+      <if test="auditor != null">
+        #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="auditDate != null">
+        #{auditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.love.team.pet.model.ReleaseInformation">
+    update release_information
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=BIT},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="totalPoint != null">
+        total_point = #{totalPoint,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="heat != null">
+        heat = #{heat,jdbcType=INTEGER},
+      </if>
+      <if test="readAmount != null">
+        read_amount = #{readAmount,jdbcType=INTEGER},
+      </if>
+      <if test="auditor != null">
+        auditor = #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="auditDate != null">
+        audit_date = #{auditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.love.team.pet.model.ReleaseInformation">
+    update release_information
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      version = #{version,jdbcType=INTEGER},
+      total_point = #{totalPoint,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      heat = #{heat,jdbcType=INTEGER},
+      read_amount = #{readAmount,jdbcType=INTEGER},
+      auditor = #{auditor,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      audit_date = #{auditDate,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.love.team.pet.model.ReleaseInformation">
+    update release_information
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      version = #{version,jdbcType=INTEGER},
+      total_point = #{totalPoint,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      heat = #{heat,jdbcType=INTEGER},
+      read_amount = #{readAmount,jdbcType=INTEGER},
+      auditor = #{auditor,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      audit_date = #{auditDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.love.team.pet.model.ReleaseInformation">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="total_point" jdbcType="INTEGER" property="totalPoint" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="heat" jdbcType="INTEGER" property="heat" />
+    <result column="read_amount" jdbcType="INTEGER" property="readAmount" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.love.team.pet.model.ReleaseInformation">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />

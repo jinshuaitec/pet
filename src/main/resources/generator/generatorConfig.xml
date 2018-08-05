@@ -80,8 +80,8 @@
                enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="rootClass" value="com.love.team.pet.model.BaseEntity"/>
             <property name="useActualColumnNames" value="false"/>
-        </table>
-        <table tableName="release_information"
+        </table>-->
+        <!--<table tableName="release_information"
                         enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                         enableSelectByExample="false" selectByExampleQueryId="false">
         <property name="rootClass" value="com.love.team.pet.model.BaseEntity"/>

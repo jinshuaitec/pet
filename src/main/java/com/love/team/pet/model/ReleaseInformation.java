@@ -1,5 +1,7 @@
 package com.love.team.pet.model;
 
+import java.util.Date;
+
 public class ReleaseInformation extends BaseEntity {
     private Boolean isDeleted;
 
@@ -10,6 +12,15 @@ public class ReleaseInformation extends BaseEntity {
     private Integer heat;
 
     private Integer readAmount;
+
+    private String auditor;
+
+    /**
+     * 初试状态为0,审核通过为1,没有通过为-1,已被领养为2
+     */
+    private Integer status;
+
+    private Date auditDate;
 
     private String content;
 
@@ -51,6 +62,30 @@ public class ReleaseInformation extends BaseEntity {
 
     public void setReadAmount(Integer readAmount) {
         this.readAmount = readAmount;
+    }
+
+    public String getAuditor() {
+        return auditor;
+    }
+
+    public void setAuditor(String auditor) {
+        this.auditor = auditor;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getAuditDate() {
+        return auditDate;
+    }
+
+    public void setAuditDate(Date auditDate) {
+        this.auditDate = auditDate;
     }
 
     public String getContent() {
