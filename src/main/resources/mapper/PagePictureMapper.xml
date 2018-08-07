@@ -174,4 +174,12 @@
       sequence = #{sequence,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="homePage" parameterType="java.lang.String" resultType="string">
+    select
+    url
+    from page_picture
+    where code = #{code,jdbcType=VARCHAR}
+      and is_deleted = false
+  </select>
 </mapper>

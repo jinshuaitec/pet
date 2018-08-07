@@ -4,6 +4,7 @@ import com.love.team.pet.model.wechat.dto.ReleaseInformationDTO;
 import com.love.team.pet.support.Result;
 import com.love.team.pet.wechat.service.ReleaseInformationService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,12 +25,14 @@ public class ReleaseInformationController extends BaseController {
     private ReleaseInformationService releaseInformationService;
 
     @PostMapping("/release-information")
+    @ApiOperation(value = "保存发布信息")
     public Result saveReleaseInformation(@RequestBody ReleaseInformationDTO dto){
         releaseInformationService.saveReleaseInformation(dto);
         return new Result();
     }
 
     @GetMapping("/release-informations")
+    @ApiOperation(value = "获取多个发布信息")
     public Result releaseInformations(){
         Map<String,Object> params = new HashMap<>();
         releaseInformationService.findAllData(params);

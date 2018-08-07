@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-08-05 20:54:01
+Date: 2018-08-07 22:11:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -83,6 +83,9 @@ CREATE TABLE `release_information` (
   `auditor` varchar(36) DEFAULT NULL COMMENT '是由那个管理员审核的',
   `status` int(11) DEFAULT NULL COMMENT '信息刚发布时是没有审核的0,信息发布之后会审核通过为1,不通过为-1,',
   `audit_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '管理员审核的时间',
+  `province` varchar(20) DEFAULT NULL,
+  `city` varchar(20) DEFAULT NULL,
+  `area` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -134,7 +137,7 @@ CREATE TABLE `user` (
   `id_card_back_image` varchar(255) DEFAULT NULL COMMENT '身份证图片反面URL',
   `user_name` varchar(100) DEFAULT NULL,
   `user_image` varchar(255) DEFAULT NULL COMMENT '用户头像',
-  `email` varchar(15) DEFAULT NULL COMMENT '邮箱',
+  `email` varchar(100) DEFAULT NULL COMMENT '邮箱',
   `sex` bit(1) DEFAULT NULL COMMENT '性别  0 是男,1是女',
   `address` varchar(255) DEFAULT NULL,
   `province` varchar(15) DEFAULT NULL,
@@ -146,3 +149,4 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('718f38f8-95a8-45a5-afd0-9cdbe171f488', '2018-08-05 22:07:11', 'jins', null, null, null, null, null, '\0', null, '552368176', '552368176', '18897969090', 'string', null, null, null, '767957644@qq.com', '', '江苏省苏州市', null, null, null);

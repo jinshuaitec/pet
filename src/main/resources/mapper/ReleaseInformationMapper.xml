@@ -16,10 +16,16 @@
     <result column="auditor" jdbcType="VARCHAR" property="auditor" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="audit_date" jdbcType="TIMESTAMP" property="auditDate" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.love.team.pet.model.ReleaseInformation">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Base_Column_List">
     id, create_date, create_by, update_by, update_date, is_deleted, version, total_point, 
-    title, heat, read_amount, auditor, status, audit_date
+    title, heat, read_amount, auditor, status, audit_date, province, city, area
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -41,13 +47,15 @@
       update_by, update_date, is_deleted, 
       version, total_point, title, 
       heat, read_amount, auditor, 
-      status, audit_date, content
+      status, audit_date, province, 
+      city, area, content
       )
     values (#{id,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
       #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=BIT}, 
       #{version,jdbcType=INTEGER}, #{totalPoint,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
       #{heat,jdbcType=INTEGER}, #{readAmount,jdbcType=INTEGER}, #{auditor,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{auditDate,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
+      #{status,jdbcType=INTEGER}, #{auditDate,jdbcType=TIMESTAMP}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.love.team.pet.model.ReleaseInformation">
@@ -94,6 +102,15 @@
       </if>
       <if test="auditDate != null">
         audit_date,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="area != null">
+        area,
       </if>
       <if test="content != null">
         content,
@@ -142,6 +159,15 @@
       <if test="auditDate != null">
         #{auditDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=VARCHAR},
+      </if>
       <if test="content != null">
         #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -189,10 +215,40 @@
       <if test="auditDate != null">
         audit_date = #{auditDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=VARCHAR},
+      </if>
       <if test="content != null">
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
     </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.love.team.pet.model.ReleaseInformation">
+    update release_information
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=BIT},
+      version = #{version,jdbcType=INTEGER},
+      total_point = #{totalPoint,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      heat = #{heat,jdbcType=INTEGER},
+      read_amount = #{readAmount,jdbcType=INTEGER},
+      auditor = #{auditor,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      audit_date = #{auditDate,jdbcType=TIMESTAMP},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.love.team.pet.model.ReleaseInformation">
@@ -209,12 +265,35 @@
       read_amount = #{readAmount,jdbcType=INTEGER},
       auditor = #{auditor,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
-      audit_date = #{auditDate,jdbcType=TIMESTAMP}
+      audit_date = #{auditDate,jdbcType=TIMESTAMP},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.love.team.pet.model.ReleaseInformation">
-    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  <resultMap id="BaseResultMap" type="com.love.team.pet.model.ReleaseInformation">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="total_point" jdbcType="INTEGER" property="totalPoint" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="heat" jdbcType="INTEGER" property="heat" />
+    <result column="read_amount" jdbcType="INTEGER" property="readAmount" />
+    <result column="auditor" jdbcType="VARCHAR" property="auditor" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="audit_date" jdbcType="TIMESTAMP" property="auditDate" />
   </resultMap>
+  <sql id="Base_Column_List">
+    id, create_date, create_by, update_by, update_date, is_deleted, version, total_point, 
+    title, heat, read_amount, auditor, status, audit_date
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
   <select id="findAll" parameterType="map" resultMap="ResultMapWithBLOBs">
     select
     <include refid="Base_Column_List" />

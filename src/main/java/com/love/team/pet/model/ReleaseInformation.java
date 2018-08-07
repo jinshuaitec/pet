@@ -15,12 +15,15 @@ public class ReleaseInformation extends BaseEntity {
 
     private String auditor;
 
-    /**
-     * 初试状态为0,审核通过为1,没有通过为-1,已被领养为2
-     */
     private Integer status;
 
     private Date auditDate;
+
+    private String province;
+
+    private String city;
+
+    private String area;
 
     private String content;
 
@@ -86,6 +89,30 @@ public class ReleaseInformation extends BaseEntity {
 
     public void setAuditDate(Date auditDate) {
         this.auditDate = auditDate;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 
     public String getContent() {
