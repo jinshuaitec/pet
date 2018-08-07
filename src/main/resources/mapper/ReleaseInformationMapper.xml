@@ -215,4 +215,12 @@
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.love.team.pet.model.ReleaseInformation">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
+  <select id="findAll" parameterType="map" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from release_information
+    where is_deleted=0
+  </select>
 </mapper>
