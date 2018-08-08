@@ -9,6 +9,7 @@ import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,20 +21,26 @@ import java.net.URLEncoder;
  */
 public class QiNiuUtil {
 
+    @Value("${ACCESS_KEY}")
+    private static String accessKey;
+
+    @Value("${SECRET_KEY}")
+    private static String secretKey;
+
+    @Value("${BUCKET_NAME}")
+    private static String bucketName;
+
+    @Value("${DOMAIN_BUCKET}")
+    private static String domainBucket;
+
     private  static  final org.slf4j.Logger logger = LoggerFactory.getLogger(QiNiuUtil.class);
-    //设置好账号的ACCESS_KEY和SECRET_KEY
-    static String ACCESS_KEY = "OuVOEEFaGS7gjPAu9uZOB4quODVFpJDyVkrhZVcm"; //这两个登录七牛 账号里面可以找到
-    static String SECRET_KEY = "7sfKf3rmC7WakZV0L9quWVlWVzck5tsiWWgEtqwJ";
-
-
-    static String DOMAINOFBUCKET="http://p33kryxjs.bkt.clouddn.com";
 
     //密钥配置
-    static Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
+   private static Auth auth = Auth.create(accessKey, secretKey);
     //创建上传对象
     //构造一个带指定Zone对象的配置类
-    static Configuration cfg = new Configuration(Zone.zone0());//代表华东机房
-    static UploadManager uploadManager = new UploadManager(cfg);
+    private static Configuration cfg = new Configuration(Zone.zone0());//代表华东机房
+    private static UploadManager uploadManager = new UploadManager(cfg);
 
     static public String upload(String filePath,String key,String bucketName) throws IOException {
         try {
@@ -41,8 +48,7 @@ public class QiNiuUtil {
             Response res = uploadManager.put(filePath, key, auth.uploadToken(bucketName));
             DefaultPutRet putRet = new Gson().fromJson(res.bodyString(), DefaultPutRet.class);
             String encodedFileName = URLEncoder.encode(putRet.key, "utf-8");
-            String finalUrl = String.format("%s/%s", DOMAINOFBUCKET, encodedFileName);
-            return finalUrl;
+            return  String.format("%s/%s", domainBucket, encodedFileName);
         } catch (QiniuException e) {
             Response r = e.response;
             logger.error("error"+e);
@@ -51,7 +57,7 @@ public class QiNiuUtil {
                 //响应的文本信息
                 logger.error("r.bodyString()"+r.bodyString());
             } catch (QiniuException e1) {
-                //ignore
+               logger.error("上传文件出错");
             }
         }
         return null;
@@ -68,8 +74,7 @@ public class QiNiuUtil {
             //解析上传成功的结果
             DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
             String encodedFileName = URLEncoder.encode(putRet.key, "utf-8");
-            String finalUrl = String.format("%s/%s", DOMAINOFBUCKET, encodedFileName);
-            return finalUrl;
+            return String.format("%s/%s", domainBucket, encodedFileName);
         } catch (QiniuException ex) {
             Response r = ex.response;
             logger.error("error"+ex);
@@ -77,6 +82,7 @@ public class QiNiuUtil {
             try {
                 logger.error("r.bodyString()"+r.bodyString());
             } catch (QiniuException ex2) {
+                logger.error("上传文件出错");
             }
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
