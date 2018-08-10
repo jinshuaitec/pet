@@ -14,9 +14,9 @@ import com.aliyuncs.profile.IClientProfile;
 
 public class PhoneCode {
 	//发送验证码
-	public static int phoneCode(String phoneid) throws ServerException, ClientException{
-		Random r = new Random();
-		int i = r.nextInt(89999)+600000;
+	public static int phoneCode(String phoneNumber) throws ServerException, ClientException{
+		Random random = new Random();
+		int resultCode = random.nextInt(89999)+600000;
 //		//设置超时时间-可自行调整
 //	    System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
 //	    System.setProperty("sun.net.client.defaultReadTimeout", "10000");
@@ -51,9 +51,9 @@ public class PhoneCode {
 //	    //请求失败这里会抛ClientException异常
 //	    SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
 //	    if(sendSmsResponse.getCode() != null && sendSmsResponse.getCode().equals("OK")) {
-//	    		return i;
+//	    		return resultCode;
 //	    }
-		return i;
+		return resultCode;
 		
 	}
 	}

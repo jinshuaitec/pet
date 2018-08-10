@@ -35,5 +35,5 @@ public class UserDTO {
 
     @ApiModelProperty(name = "address",value = "用户地址",notes = "用户地址")
     private String address;
-
+    
 }
