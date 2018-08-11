@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.love.team.pet.dao.ThemeMapper" >
+
+  <resultMap id="ThemeDetailedAll" type="com.love.team.pet.model.Theme" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="comment_id" property="commentId" jdbcType="VARCHAR" />
+    <result column="fabulous" property="fabulous" jdbcType="INTEGER" />
+    <collection property="pagePicture" column="id" select="com.love.team.pet.dao.PagePictureMapper.findThemeURL"></collection>
+    <collection property="cuteComments" column="id" select="com.love.team.pet.dao.CommentMapper.findThemeComment"></collection>
+  </resultMap>
+
+  <resultMap id="HotTheme" type="com.love.team.pet.model.Theme" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="comment_id" property="commentId" jdbcType="VARCHAR" />
+    <result column="fabulous" property="fabulous" jdbcType="INTEGER" />
+    <collection property="pagePicture" column="id" select="com.love.team.pet.dao.PagePictureMapper.findThemeURL"></collection>
+  </resultMap>
+
+  <select id="findAll"  resultType="com.love.team.pet.model.Theme" >
+    select
+      *
+    from
+    cute_theme
+  </select>
+
+  <select id="findDetailed"  resultMap="ThemeDetailedAll" parameterType="String">
+    select
+      *
+    from
+    cute_theme
+    where
+    id=#{theme}
+  </select>
+
+  <select id="findTheme" resultMap="HotTheme" parameterType="java.util.Date">
+    SELECT
+      *
+    FROM
+      cute_theme
+    <if test="time!=null and time!=''">
+      WHERE
+      create_date &lt; #{time}
+    </if>
+    ORDER BY
+      create_date
+      DESC
+    LIMIT 10
+  </select>
+
+  <insert id="insert">
+    insert into
+    cute_theme
+    (id,user_id,create_date,content)
+    values
+      (#{id,jdbcType=VARCHAR},
+      #{userId,jdbcType=VARCHAR},
+      #{createDate,jdbcType=TIMESTAMP},
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+
+  <insert id="addLuckys" parameterType="java.util.List">
+
+    insert into
+    cute_theme_fabulos(user_id,theme_id,time)
+    values
+    <foreach collection="list" item="page" index="index" separator=",">
+      (#{page.token},#{page.themeId},#{page.time})
+    </foreach>
+
+  </insert>
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.love.team.pet.dao.MyThemeMapper" >
+
+  <resultMap id="ThemeAll" type="com.love.team.pet.model.Theme" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="comment_id" property="commentId" jdbcType="VARCHAR" />
+    <result column="fabulous" property="fabulous" jdbcType="INTEGER" />
+    <collection property="pagePicture" column="id" select="com.love.team.pet.dao.PagePictureMapper.findThemeURL"></collection>
+  </resultMap>
+
+  <select id="findMyThemeAll"  resultMap="ThemeAll" parameterType="String">
+    select
+      *
+    from
+    cute_theme
+    WHERE
+    user_id=#{userId}
+    ORDER by
+    create_date
+    desc
+  </select>
+
+  <delete id="deleteTheme" parameterType="String">
+    delete from
+      cute_theme
+    WHERE id=#{themeId} AND user_id=#{token}
+  </delete>
+
+</mapper>

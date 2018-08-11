@@ -182,4 +182,25 @@
     where code = #{code,jdbcType=VARCHAR}
       and is_deleted = false
   </select>
+
+  <select id="findThemeURL" resultMap="BaseResultMap"  parameterType="PagePicture">
+		select
+		  *
+		 from
+		  page_picture
+		 where
+		  cute_id=#{cuteId}
+</select>
+
+  <insert id="inMoreUrl" parameterType="java.util.List">
+
+    insert into
+    page_picture(id,url,create_date,cute_id)
+    values
+    <foreach collection="list" item="page" index="index" separator=",">
+      (#{page.id},#{page.url},#{page.createDate},#{page.cuteId})
+    </foreach>
+
+  </insert>
+
 </mapper>

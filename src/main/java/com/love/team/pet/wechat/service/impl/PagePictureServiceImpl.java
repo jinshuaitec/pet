@@ -32,4 +32,34 @@ public class PagePictureServiceImpl  extends BaseServiceImpl<PagePicture> implem
         pagePictureDTO.setPageMenu(homePageList);
         return pagePictureDTO;
     }
+
+    /**
+     * 添加图片
+     * @param pictures
+     */
+    @Override
+    public void inster(List<PagePicture> pictures) {
+
+        pictures=this.savepictureInfo(pictures);
+
+        pagePictureMapper.inMoreUrl(pictures);
+    }
+
+    /**
+     * 处理图片id,time ==
+     * @param pictures
+     * @return
+     */
+    private List savepictureInfo(List<PagePicture> pictures) {
+
+        List<PagePicture> picturescopy = new ArrayList<PagePicture>();
+
+        for(PagePicture pagePicture:pictures){
+            super.savemoreInfo(pagePicture);
+            picturescopy.add(pagePicture);
+        }
+
+        return picturescopy;
+    }
+
 }

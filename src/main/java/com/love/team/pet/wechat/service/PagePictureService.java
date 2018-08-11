@@ -1,6 +1,9 @@
 package com.love.team.pet.wechat.service;
 
+import com.love.team.pet.model.PagePicture;
 import com.love.team.pet.model.wechat.dto.PagePictureDTO;
+
+import java.util.List;
 
 /**
  * @author jins
@@ -15,4 +18,5 @@ public interface PagePictureService {
     PagePictureDTO findPagePicture();
 
 
+    void inster(List<PagePicture> pictures);
 }

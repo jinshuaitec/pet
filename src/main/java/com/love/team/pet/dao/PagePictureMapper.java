@@ -15,4 +15,17 @@ public interface PagePictureMapper extends BaseMapper<PagePicture>{
      */
     List<String> homePage(String code);
 
+    /**
+     * 找主题url
+     * @param cuteId
+     * @return
+     */
+    PagePicture findThemeURL(String cuteId);
+
+    /**
+     * 添加url
+     * @param pictures
+     */
+    void inMoreUrl(List<PagePicture> pictures);
+
 }

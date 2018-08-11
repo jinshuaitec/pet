@@ -32,4 +32,22 @@ public abstract class BaseServiceImpl<T extends BaseEntity> extends Base {
         }
 
     }
+
+    /**
+     * id and time
+     * 保存时设置基础属性的方法（只设置创建者和更新人）
+     * UUID由系统自动维护，不用设置
+     * 创建/更新时间有默认值，不用设置
+     *
+     * @param baseEntity 待保存对象
+     */
+    protected void savemoreInfo(BaseEntity baseEntity) {
+        if (StringUtil.isEmpty(baseEntity.getId())){
+            baseEntity.setId(UUID.randomUUID().toString());
+            baseEntity.setCreateDate(new Date());
+        }else {
+
+        }
+    }
+
 }
