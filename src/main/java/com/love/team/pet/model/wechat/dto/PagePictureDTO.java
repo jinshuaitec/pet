@@ -18,5 +18,5 @@ public class PagePictureDTO {
     private List<String> sowingMap;
 
     @ApiModelProperty(name = "homePage",value = "菜单和图片")
-    private List<String> homePage;
+    private List<String> pageMenu;
 }
