@@ -271,29 +271,6 @@
       area = #{area,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <resultMap id="BaseResultMap" type="com.love.team.pet.model.ReleaseInformation">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
-    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
-    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
-    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
-    <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
-    <result column="version" jdbcType="INTEGER" property="version" />
-    <result column="total_point" jdbcType="INTEGER" property="totalPoint" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="heat" jdbcType="INTEGER" property="heat" />
-    <result column="read_amount" jdbcType="INTEGER" property="readAmount" />
-    <result column="auditor" jdbcType="VARCHAR" property="auditor" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="audit_date" jdbcType="TIMESTAMP" property="auditDate" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, create_date, create_by, update_by, update_date, is_deleted, version, total_point, 
-    title, heat, read_amount, auditor, status, audit_date
-  </sql>
-  <sql id="Blob_Column_List">
-    content
-  </sql>
   <select id="findAll" parameterType="map" resultMap="ResultMapWithBLOBs">
     select
     <include refid="Base_Column_List" />
