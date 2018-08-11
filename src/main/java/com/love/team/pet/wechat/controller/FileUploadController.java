@@ -1,6 +1,9 @@
 
 package com.love.team.pet.wechat.controller;
 
+import com.love.team.pet.model.wechat.dto.FileUploadDTO;
+import com.love.team.pet.support.JSONResult;
+import com.love.team.pet.wechat.service.FileUploadService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,46 +14,38 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * @author zhagnzhi
+ * @author jins
  * @date 2017/8/31
  * 上传文件控制器
  */
 @Api(value = "FileUploadController", description = "文件上传")
-@RequestMapping("/file-upload")
 @RestController
-public class FileUploadController {
+public class FileUploadController extends BaseController{
 
-  /*  @Autowired
-    private IFileUploadService fileUploadService;
+    @Autowired
+    private FileUploadService fileUploadService;
 
-    @ApiOperation(value = "上传文件")
-    @RequestMapping(value = "/uploadfile",method = RequestMethod.POST)
-    public Result uploadImage(@RequestParam(value = "file") MultipartFile file) throws Exception {
-        String name = file.getOriginalFilename();
-        String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-        String fileName = name.substring(0,name.indexOf("."));
-        String number = fileName + System.currentTimeMillis()+suffix ;
-        String urlPath = QiniuUtil.uploadInputStream(file.getInputStream(), Constants.HOUSING_PARTY_CONSTRUCTION,number);
-        FileUpload upload = new FileUpload();
-        upload.setCategory(this.getClass().getSimpleName());
-        upload.setExt(suffix);
-        upload.setFileName(name);
-        upload.setPath(urlPath);
-        fileUploadService.saveOrUpdate(upload);
-        FileUploadDto dto = new FileUploadDto();
-        dto.setFileName(name);
-        dto.setFilePath(urlPath);
-        return new JSONResult(dto);
+    @ApiOperation(value = "文件列表上传")
+    @RequestMapping(value = "/upload-files", method = RequestMethod.POST)
+    public JSONResult uploadFiles(HttpServletRequest request, @RequestParam(value = "file") MultipartFile... fileList) throws IOException {
+        List<FileUploadDTO> fileUploadDTOList = new ArrayList<>();
+        for (MultipartFile file : fileList) {
+            FileUploadDTO fileUploadDTO = fileUploadService.fileUrl(file, fileUrl(request));
+            fileUploadDTOList.add(fileUploadDTO);
+        }
+        return new JSONResult(fileUploadDTOList);
     }
 
     @ApiOperation(value = "单文件上传")
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public Result uploadFile(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request) throws Exception {
-        String basePath = request.getSession().getServletContext().getRealPath("/");
-        FileUploadDto dto = fileUploadService.filePath(file, basePath);
+    @RequestMapping(value = "/upload-file", method = RequestMethod.POST)
+    public JSONResult uploadFile(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request) throws Exception {
+        FileUploadDTO dto = fileUploadService.fileUrl(file,fileUrl(request) );
         return new JSONResult(dto);
-    }*/
+    }
 }

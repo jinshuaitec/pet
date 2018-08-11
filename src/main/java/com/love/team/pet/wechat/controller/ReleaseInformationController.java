@@ -1,6 +1,7 @@
 package com.love.team.pet.wechat.controller;
 
 import com.love.team.pet.model.wechat.dto.ReleaseInformationDTO;
+import com.love.team.pet.support.JSONResult;
 import com.love.team.pet.support.Result;
 import com.love.team.pet.wechat.service.ReleaseInformationService;
 import io.swagger.annotations.Api;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,9 +35,9 @@ public class ReleaseInformationController extends BaseController {
 
     @GetMapping("/release-informations")
     @ApiOperation(value = "获取多个发布信息")
-    public Result releaseInformations(){
+    public JSONResult releaseInformationMore(){
         Map<String,Object> params = new HashMap<>();
-        releaseInformationService.findAllData(params);
-        return new Result();
+        List<ReleaseInformationDTO> dtoList =  releaseInformationService.findAllData(params);
+        return new JSONResult(dtoList);
     }
 }

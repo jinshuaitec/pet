@@ -21,17 +21,13 @@ import java.net.URLEncoder;
  */
 public class QiNiuUtil {
 
-    @Value("${ACCESS_KEY}")
-    private static String accessKey;
+    private static String accessKey="WAGdskme6fM_gstEubV6jrU4FiqsAGFDrUWMClL9";
 
-    @Value("${SECRET_KEY}")
-    private static String secretKey;
+    private static String secretKey="BGwGBopeaspc9u1QcI0D_7wj5ssIw_J1YiEPsgS8";
 
-    @Value("${BUCKET_NAME}")
-    private static String bucketName;
+    private static String bucketName="loveteampetsmallprogram";
 
-    @Value("${DOMAIN_BUCKET}")
-    private static String domainBucket;
+    private static String domainBucket="http://pd4f8altw.bkt.clouddn.com";
 
     private  static  final org.slf4j.Logger logger = LoggerFactory.getLogger(QiNiuUtil.class);
 
@@ -42,7 +38,7 @@ public class QiNiuUtil {
     private static Configuration cfg = new Configuration(Zone.zone0());//代表华东机房
     private static UploadManager uploadManager = new UploadManager(cfg);
 
-    static public String upload(String filePath,String key,String bucketName) throws IOException {
+    public static  String upload(String filePath,String key) throws IOException {
         try {
             //调用put方法上传
             Response res = uploadManager.put(filePath, key, auth.uploadToken(bucketName));
@@ -65,10 +61,10 @@ public class QiNiuUtil {
 
     /**
      *
-     * @param bucketName//要上传的空间
+     * @param //要上传的空间
      * @param key //上传到七牛后保存的文件名
      */
-    public static String uploadInputStream(InputStream stream,String bucketName, String key){
+    public static String uploadInputStream(InputStream stream, String key){
         try {
             Response response = uploadManager.put(stream,key,auth.uploadToken(bucketName),null, null);
             //解析上传成功的结果

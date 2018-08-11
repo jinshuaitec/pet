@@ -28,8 +28,8 @@ public class PagePictureServiceImpl  extends BaseServiceImpl<PagePicture> implem
         PagePictureDTO pagePictureDTO = new PagePictureDTO();
         List<String> sowingMapList = pagePictureMapper.homePage("SOWING_MAP");
         pagePictureDTO.setSowingMap(sowingMapList);
-        List<String> homePageList = pagePictureMapper.homePage("HOME_PAGE");
-        pagePictureDTO.setHomePage(homePageList);
+        List<String> homePageList = pagePictureMapper.homePage("PAGE_MENU");
+        pagePictureDTO.setPageMenu(homePageList);
         return pagePictureDTO;
     }
 }
