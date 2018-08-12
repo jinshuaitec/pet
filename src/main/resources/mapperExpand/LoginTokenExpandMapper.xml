@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.love.team.pet.dao.expand.LoginTokenExpandMapper">
+	<select id="findWxCode" parameterType="String"
+		resultType="com.love.team.pet.model.LoginToken">
+		select * from login_token where wx_code = #{value}
+	</select>
+
+	<select id="findToken" parameterType="String"
+		resultType="com.love.team.pet.model.LoginToken">
+		select * from login_token where user_token = #{value}
+	</select>
+</mapper>

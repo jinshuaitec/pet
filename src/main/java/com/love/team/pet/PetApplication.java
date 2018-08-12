@@ -29,32 +29,32 @@ public class PetApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PetApplication.class, args);
-		/*List<String> list = new ArrayList<>();
-		boolean overWrite = true;
-		String genConfig = "/generator/generatorConfig.xml";
-		File configFile = new File(PetApplication.class.getResource(genConfig).getFile());
-		ConfigurationParser cp = new ConfigurationParser(list);
-		Configuration configuration = null;
-		try {
-			configuration = cp.parseConfiguration(configFile);
-		}catch (IOException | XMLParserException e){
-			e.printStackTrace();
-		}
-		DefaultShellCallback callback = new DefaultShellCallback(overWrite);
-		MyBatisGenerator myBatisGenerator = null;
-		try {
-			myBatisGenerator = new MyBatisGenerator(configuration,callback,list);
-		}catch (InvalidConfigurationException e){
-			e.printStackTrace();
-		}
-		try {
-			myBatisGenerator.generate(null);
-		}catch (SQLException e){
-			e.printStackTrace();
-		}catch (IOException e){
-			e.printStackTrace();
-		}catch (InterruptedException e){
-			e.printStackTrace();
-		}*/
+//		List<String> list = new ArrayList<>();
+//		boolean overWrite = true;
+//		String genConfig = "/generator/generatorConfig.xml";
+//		File configFile = new File(PetApplication.class.getResource(genConfig).getFile());
+//		ConfigurationParser cp = new ConfigurationParser(list);
+//		Configuration configuration = null;
+//		try {
+//			configuration = cp.parseConfiguration(configFile);
+//		}catch (IOException | XMLParserException e){
+//			e.printStackTrace();
+//		}
+//		DefaultShellCallback callback = new DefaultShellCallback(overWrite);
+//		MyBatisGenerator myBatisGenerator = null;
+//		try {
+//			myBatisGenerator = new MyBatisGenerator(configuration,callback,list);
+//		}catch (InvalidConfigurationException e){
+//			e.printStackTrace();
+//		}
+//		try {
+//			myBatisGenerator.generate(null);
+//		}catch (SQLException e){
+//			e.printStackTrace();
+//		}catch (IOException e){
+//			e.printStackTrace();
+//		}catch (InterruptedException e){
+//			e.printStackTrace();
+//		}
 	}
 }

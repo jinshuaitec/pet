@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate v12.08 (64 bit)
-MySQL - 5.7.17 : Database - ssh
+SQLyog Ultimate v12.09 (64 bit)
+MySQL - 5.7.13-log : Database - pet
 *********************************************************************
 */
 
@@ -12,9 +12,9 @@ MySQL - 5.7.17 : Database - ssh
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`ssh` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`pet` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
-USE `ssh`;
+USE `pet`;
 
 /*Table structure for table `adopt_pet` */
 
@@ -87,6 +87,26 @@ CREATE TABLE `cute_theme_fabulos` (
 /*Data for the table `cute_theme_fabulos` */
 
 insert  into `cute_theme_fabulos`(`user_id`,`theme_id`,`time`) values ('5','5','2018-08-10 19:20:22'),('5','6','2018-08-10 19:20:22'),('5','7','2018-08-10 19:20:22');
+
+/*Table structure for table `login_token` */
+
+DROP TABLE IF EXISTS `login_token`;
+
+CREATE TABLE `login_token` (
+  `id` varchar(36) NOT NULL COMMENT '用户id',
+  `user_token` varchar(36) DEFAULT NULL COMMENT '用户登录凭证',
+  `last_login` datetime DEFAULT NULL COMMENT '最后登录时间',
+  `wx_code` varchar(50) DEFAULT NULL COMMENT '微信唯一标识',
+  `create_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_by` varchar(36) DEFAULT NULL COMMENT '创建人id',
+  `update_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更改时间',
+  `update_by` varchar(36) DEFAULT NULL COMMENT '更改人id',
+  `version` int(4) DEFAULT NULL COMMENT '版本',
+  `is_deleted` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `login_token` */
 
 /*Table structure for table `page_picture` */
 
@@ -176,7 +196,7 @@ CREATE TABLE `user` (
   `qq` varchar(15) DEFAULT NULL,
   `we_chat` varchar(15) DEFAULT NULL,
   `phone_number` varchar(11) DEFAULT NULL,
-  `id_card` varchar(18) NOT NULL COMMENT '身份证号',
+  `id_card` varchar(18) DEFAULT NULL COMMENT '身份证号',
   `id_card_back_image` varchar(255) DEFAULT NULL COMMENT '身份证图片反面URL',
   `user_name` varchar(100) DEFAULT NULL,
   `user_image` varchar(255) DEFAULT NULL COMMENT '用户头像',

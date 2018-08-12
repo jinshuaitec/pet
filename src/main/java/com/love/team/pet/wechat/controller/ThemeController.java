@@ -3,6 +3,7 @@ package com.love.team.pet.wechat.controller;
 import com.love.team.pet.model.Theme;
 import com.love.team.pet.model.wechat.dto.FabulosDTO;
 import com.love.team.pet.model.wechat.dto.ThemeDTO;
+import com.love.team.pet.support.JSONResult;
 import com.love.team.pet.support.Result;
 import com.love.team.pet.wechat.service.ThemeService;
 import io.swagger.annotations.Api;
@@ -38,7 +39,8 @@ public class ThemeController {
         Map<String,Object> modelMap=new HashMap<String, Object>();
         List<Theme> themes=themeService.findTheme(time);
         modelMap.put("themes",themes);
-        return new Result(modelMap);
+        
+        return new JSONResult(modelMap);
     }
 
     @GetMapping
@@ -48,7 +50,7 @@ public class ThemeController {
         Map<String,Object> modelMap=new HashMap<String, Object>();
         List<Theme> list=themeService.findDetailed(theme);
         modelMap.put("list",list);
-        return new Result(modelMap);
+        return new JSONResult(modelMap);
     }
 
     @GetMapping

@@ -1,6 +1,6 @@
 package com.love.team.pet.dao;
 
-import com.love.team.pet.model.AdoptPet;
+
 
 import java.util.List;
 import java.util.Map;

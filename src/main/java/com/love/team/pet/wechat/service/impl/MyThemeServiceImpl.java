@@ -34,5 +34,6 @@ public class MyThemeServiceImpl implements MyThemeService {
     public void deleteTheme(String token, String themeId) {
         myThemeMapper.deleteTheme(token,themeId);
         commentMapper.deleteComment(themeId);
+
     }
 }

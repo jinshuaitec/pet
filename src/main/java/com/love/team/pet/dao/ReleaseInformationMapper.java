@@ -5,6 +5,8 @@ import com.love.team.pet.model.ReleaseInformation;
 import java.util.List;
 import java.util.Map;
 
+
+
 public interface ReleaseInformationMapper extends BaseMapper<ReleaseInformation>{
 
     /**
