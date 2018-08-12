@@ -23,7 +23,7 @@ public class PagePictureController extends BaseController{
     @Autowired
     private PagePictureService pagePictureService;
 
-    @ApiOperation(value = "查询领养宠物页面图片")
+    @ApiOperation(value = "查询首页面的轮播图和菜单图片")
     @GetMapping("/page-pictures")
     public JSONResult pagePictureAllData(){
         PagePictureDTO dto = pagePictureService.findPagePicture();

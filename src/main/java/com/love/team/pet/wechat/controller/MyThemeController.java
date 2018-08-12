@@ -1,6 +1,7 @@
 package com.love.team.pet.wechat.controller;
 
 import com.love.team.pet.model.Theme;
+import com.love.team.pet.support.JSONResult;
 import com.love.team.pet.support.Result;
 import com.love.team.pet.wechat.service.MyThemeService;
 import io.swagger.annotations.Api;
@@ -21,25 +22,22 @@ import java.util.Map;
  */
 @Api("话题")
 @RestController
-@RequestMapping(value = "/mycute")
+@RequestMapping(value = "/my-cute")
 public class MyThemeController {
 
     @Autowired
     MyThemeService myThemeService;
 
-    @GetMapping
-    @RequestMapping(value = "/mytheme")
+    @GetMapping(value = "/my-theme")
     @ApiOperation(value = "查询自己的话题",notes = "根据接受时间查询")
-    public Result myThemeAll(String token){
+    public JSONResult myThemeAll(String token){
         Map<String,Object> modelMap=new HashMap<String, Object>();
         List<Theme> list = myThemeService.myFindTheme(token);
-        System.out.println(list);
         modelMap.put("list",list);
-        return new Result(modelMap);
+        return new JSONResult(modelMap);
     }
 
-    @GetMapping
-    @RequestMapping(value = "/deletetheme")
+    @GetMapping(value = "/delete-theme")
     @ApiOperation(value = "查询自己的话题",notes = "根据接受时间查询")
     public Result deleteThemeA(String token, String themeId){
         myThemeService.deleteTheme(token,themeId);

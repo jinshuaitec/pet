@@ -12,11 +12,6 @@ public class Result {
 
     private String msg;
 
-    public Result(Map<String,Object> modelMap) {
-        this(ErrorCode.OK);
-        this.modelMap=modelMap;
-    }
-
     public Result() {
         this(ErrorCode.OK);
     }
@@ -30,16 +25,6 @@ public class Result {
         this.code = httpCode.code();
         this.msg = httpCode.message();
     }
-
-    public Map<String, Object> getModelMap() {
-        return modelMap;
-    }
-
-    public void setModelMap(Map<String, Object> modelMap) {
-        this.modelMap = modelMap;
-    }
-
-    private Map<String,Object> modelMap;
 
     public int getCode() {
         return code;
